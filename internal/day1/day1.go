@@ -1,36 +1,51 @@
 package internal
 
 import (
-	"log/slog"
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 func getCalibrationValue(input string) int {
-
 	r, _ := regexp.Compile("(one|two|three|four|five|six|seven|eight|nine|[0-9]){1}")
 	lines := strings.Split(input, "\n")
 
-	sum := 0
+	var wg sync.WaitGroup
+	resultChan := make(chan int)
+
 	for _, line := range lines {
-
-		found := r.FindAllString(line, -1)
-
-		first := convertToIntStr(found[0])
-		last := convertToIntStr(found[len(found)-1])
-
-		number, err := strconv.Atoi(first + last)
-		if err != nil {
-			panic(err)
-		}
-		slog.Debug("getCalibrationValue", "number", number)
-
-		sum += number
+		wg.Add(1)
+		go process(line, r, &wg, resultChan)
 	}
 
-	slog.Info("getCalibrationValue", "sum", sum)
+	go func() {
+		wg.Wait()
+		close(resultChan)
+	}()
+
+	sum := 0
+	for r := range resultChan {
+		sum += r
+	}
+
 	return sum
+}
+
+func process(input string, r *regexp.Regexp, wg *sync.WaitGroup, resultChan chan<- int) {
+	defer wg.Done()
+
+	found := r.FindAllString(input, -1)
+
+	first := convertToIntStr(found[0])
+	last := convertToIntStr(found[len(found)-1])
+
+	number, err := strconv.Atoi(first + last)
+	if err != nil {
+		panic(err)
+	}
+
+	resultChan <- number
 }
 
 func convertToIntStr(str string) string {
