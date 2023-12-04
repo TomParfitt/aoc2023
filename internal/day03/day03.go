@@ -5,13 +5,9 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
-)
 
-type part struct {
-	row  int
-	colS int
-	colE int
-}
+	"github.com/TomParfitt/aoc2023/internal/utils"
+)
 
 type symbol struct {
 	row int
@@ -58,12 +54,7 @@ func sumPartNumbers(grid string) int {
 		}
 	}
 
-	sum := 0
-	for _, partNumber := range partNumbers {
-		sum += partNumber
-	}
-
-	return sum
+	return utils.SumIntS(partNumbers)
 }
 
 type cog struct {

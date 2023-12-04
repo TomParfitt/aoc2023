@@ -8,32 +8,6 @@ import (
 	"sync"
 )
 
-type process func(input string, wg *sync.WaitGroup, resultChan chan<- int)
-
-func sumProcessResults(input string, p process) int {
-	lines := strings.Split(input, "\n")
-
-	var wg sync.WaitGroup
-	resultChan := make(chan int)
-
-	for _, line := range lines {
-		wg.Add(1)
-		go p(line, &wg, resultChan)
-	}
-
-	go func() {
-		wg.Wait()
-		close(resultChan)
-	}()
-
-	sum := 0
-	for r := range resultChan {
-		sum += r
-	}
-
-	return sum
-}
-
 func getValidId(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 	defer wg.Done()
 

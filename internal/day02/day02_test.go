@@ -5,6 +5,8 @@ import (
 	"log/slog"
 	"os"
 	"testing"
+
+	"github.com/TomParfitt/aoc2023/internal/utils"
 )
 
 func TestGetValidIdsSumExample(t *testing.T) {
@@ -16,7 +18,7 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 	// When
-	valiIdsSum := sumProcessResults(input, getValidId)
+	valiIdsSum := utils.SumProcessResults(input, getValidId)
 
 	// Then
 	if valiIdsSum != 8 {
@@ -33,7 +35,7 @@ func TestGetValidIdsSum(t *testing.T) {
 	str := string(b)
 
 	// When
-	valiIdsSum := sumProcessResults(str, getValidId)
+	valiIdsSum := utils.SumProcessResults(str, getValidId)
 
 	// Then
 	slog.Info("getValidIdsSum", "valiIdsSum", valiIdsSum)
@@ -48,7 +50,7 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 	// When
-	sumOfMinCubes := sumProcessResults(input, getGamePower)
+	sumOfMinCubes := utils.SumProcessResults(input, getGamePower)
 
 	// Then
 	if sumOfMinCubes != 2286 {
@@ -65,7 +67,7 @@ func TestGetSumOfMinCubes(t *testing.T) {
 	str := string(b)
 
 	// When
-	sumOfMinCubes := sumProcessResults(str, getGamePower)
+	sumOfMinCubes := utils.SumProcessResults(str, getGamePower)
 
 	// Then
 	slog.Info("getSumOfMinCubes", "sumOfMinCubes", sumOfMinCubes)

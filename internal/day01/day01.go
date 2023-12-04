@@ -3,36 +3,12 @@ package day01
 import (
 	"regexp"
 	"strconv"
-	"strings"
 	"sync"
 )
 
-func getCalibrationValue(input string) int {
-	r, _ := regexp.Compile("(one|two|three|four|five|six|seven|eight|nine|[0-9]){1}")
-	lines := strings.Split(input, "\n")
+var r = regexp.MustCompile("(one|two|three|four|five|six|seven|eight|nine|[0-9]){1}")
 
-	var wg sync.WaitGroup
-	resultChan := make(chan int)
-
-	for _, line := range lines {
-		wg.Add(1)
-		go process(line, r, &wg, resultChan)
-	}
-
-	go func() {
-		wg.Wait()
-		close(resultChan)
-	}()
-
-	sum := 0
-	for r := range resultChan {
-		sum += r
-	}
-
-	return sum
-}
-
-func process(input string, r *regexp.Regexp, wg *sync.WaitGroup, resultChan chan<- int) {
+func getCalibrationValue(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 	defer wg.Done()
 
 	found := r.FindAllString(input, -1)

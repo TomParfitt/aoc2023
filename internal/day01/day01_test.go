@@ -5,6 +5,8 @@ import (
 	"log/slog"
 	"os"
 	"testing"
+
+	"github.com/TomParfitt/aoc2023/internal/utils"
 )
 
 func TestGetClibrationValueExample(t *testing.T) {
@@ -15,7 +17,7 @@ a1b2c3d4e5f
 treb7uchet`
 
 	// When
-	calibrationValue := getCalibrationValue(input)
+	calibrationValue := utils.SumProcessResults(input, getCalibrationValue)
 
 	// Then
 	if calibrationValue != 142 {
@@ -32,7 +34,7 @@ func TestGetClibrationValue(t *testing.T) {
 	str := string(b)
 
 	// When
-	calibrationValue := getCalibrationValue(str)
+	calibrationValue := utils.SumProcessResults(str, getCalibrationValue)
 
 	// Then
 	slog.Info("TestGetClibrationValue", "calibrationValue", calibrationValue)
@@ -49,7 +51,7 @@ zoneight234
 7pqrstsixteen`
 
 	// When
-	calibrationValue := getCalibrationValue(input)
+	calibrationValue := utils.SumProcessResults(input, getCalibrationValue)
 
 	// Then
 	if calibrationValue != 281 {
@@ -66,7 +68,7 @@ func TestGetClibrationValue2(t *testing.T) {
 	str := string(b)
 
 	// When
-	calibrationValue := getCalibrationValue(str)
+	calibrationValue := utils.SumProcessResults(str, getCalibrationValue)
 
 	// Then
 	slog.Info("TestGetClibrationValue", "calibrationValue", calibrationValue)
