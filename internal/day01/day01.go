@@ -4,9 +4,15 @@ import (
 	"regexp"
 	"strconv"
 	"sync"
+
+	"github.com/TomParfitt/aoc2023/internal/utils/process"
 )
 
 var r = regexp.MustCompile("(one|two|three|four|five|six|seven|eight|nine|[0-9]){1}")
+
+func getSumOfCalibrationValue(input string) int {
+	return process.SumResults(input, getCalibrationValue)
+}
 
 func getCalibrationValue(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 	defer wg.Done()

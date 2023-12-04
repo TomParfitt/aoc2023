@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/TomParfitt/aoc2023/internal/utils"
+	"github.com/TomParfitt/aoc2023/internal/utils/sum"
 )
 
 type symbol struct {
@@ -54,7 +54,7 @@ func sumPartNumbers(grid string) int {
 		}
 	}
 
-	return utils.SumIntS(partNumbers)
+	return sum.IntS(partNumbers)
 }
 
 type cog struct {

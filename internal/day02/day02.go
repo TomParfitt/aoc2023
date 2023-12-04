@@ -6,7 +6,13 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/TomParfitt/aoc2023/internal/utils/process"
 )
+
+func getSumOfValidIds(input string) int {
+	return process.SumResults(input, getValidId)
+}
 
 func getValidId(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 	defer wg.Done()
@@ -35,6 +41,10 @@ func getValidId(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 
 	idInt, _ := strconv.Atoi(idStr)
 	resultChan <- idInt
+}
+
+func getSumOfGamePower(input string) int {
+	return process.SumResults(input, getGamePower)
 }
 
 func getGamePower(input string, wg *sync.WaitGroup, resultChan chan<- int) {

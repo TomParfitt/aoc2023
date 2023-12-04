@@ -1,9 +1,10 @@
 package day03
 
 import (
-	"fmt"
-	"os"
 	"testing"
+
+	"github.com/TomParfitt/aoc2023/internal/utils/file"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSumPartNumbersExample(t *testing.T) {
@@ -23,26 +24,18 @@ func TestSumPartNumbersExample(t *testing.T) {
 	sum := sumPartNumbers(input)
 
 	// Then
-	if sum != 4361 {
-		t.Fatalf(`sumPartNumbers with example value %v != 4361`, sum)
-	}
+	assert.Equal(t, 4361, sum)
 }
 
 func TestSumPartNumbers(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day03.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day03.txt")
 
 	// When
-	sum := sumPartNumbers(str)
+	sum := sumPartNumbers(input)
 
 	// Then
-	if sum != 551094 {
-		t.Fatalf(`sumPartNumbers with example value %v != 551094`, sum)
-	}
+	assert.Equal(t, 551094, sum)
 }
 
 func TestSumPartNumbers2Example(t *testing.T) {
@@ -62,24 +55,16 @@ func TestSumPartNumbers2Example(t *testing.T) {
 	sum := sumPartNumbers2(input)
 
 	// Then
-	if sum != 467835 {
-		t.Fatalf(`sumPartNumbers2 with example value %v != 467835`, sum)
-	}
+	assert.Equal(t, 467835, sum)
 }
 
 func TestSumPartNumbers2(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day03.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day03.txt")
 
 	// When
-	sum := sumPartNumbers2(str)
+	sum := sumPartNumbers2(input)
 
 	// Then
-	if sum != 80179647 {
-		t.Fatalf(`sumPartNumbers with example value %v != 80179647`, sum)
-	}
+	assert.Equal(t, 80179647, sum)
 }

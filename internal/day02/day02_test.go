@@ -1,12 +1,10 @@
 package day02
 
 import (
-	"fmt"
-	"log/slog"
-	"os"
 	"testing"
 
-	"github.com/TomParfitt/aoc2023/internal/utils"
+	"github.com/TomParfitt/aoc2023/internal/utils/file"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetValidIdsSumExample(t *testing.T) {
@@ -18,27 +16,21 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 	// When
-	valiIdsSum := utils.SumProcessResults(input, getValidId)
+	valiIdsSum := getSumOfValidIds(input)
 
 	// Then
-	if valiIdsSum != 8 {
-		t.Fatalf(`getValidIdsSum with example value %v != 8`, valiIdsSum)
-	}
+	assert.Equal(t, 8, valiIdsSum)
 }
 
 func TestGetValidIdsSum(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day02.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day02.txt")
 
 	// When
-	valiIdsSum := utils.SumProcessResults(str, getValidId)
+	valiIdsSum := getSumOfValidIds(input)
 
 	// Then
-	slog.Info("getValidIdsSum", "valiIdsSum", valiIdsSum)
+	assert.Equal(t, 1853, valiIdsSum)
 }
 
 func TestGetSumOfMinCubesExample(t *testing.T) {
@@ -50,25 +42,19 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 	// When
-	sumOfMinCubes := utils.SumProcessResults(input, getGamePower)
+	sumOfMinCubes := getSumOfGamePower(input)
 
 	// Then
-	if sumOfMinCubes != 2286 {
-		t.Fatalf(`getSumOfMinCubes with example value %v != 2286`, sumOfMinCubes)
-	}
+	assert.Equal(t, 2286, sumOfMinCubes)
 }
 
 func TestGetSumOfMinCubes(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day02.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day02.txt")
 
 	// When
-	sumOfMinCubes := utils.SumProcessResults(str, getGamePower)
+	sumOfMinCubes := getSumOfGamePower(input)
 
 	// Then
-	slog.Info("getSumOfMinCubes", "sumOfMinCubes", sumOfMinCubes)
+	assert.Equal(t, 72706, sumOfMinCubes)
 }

@@ -1,6 +1,6 @@
-package utils
+package sum
 
-func SumIntS(slice []int) int {
+func IntS(slice []int) int {
 	sum := 0
 	for _, s := range slice {
 		sum += s
@@ -8,7 +8,7 @@ func SumIntS(slice []int) int {
 	return sum
 }
 
-func SumIntC(resultChan chan int) int {
+func IntC(resultChan chan int) int {
 	sum := 0
 	for s := range resultChan {
 		sum += s

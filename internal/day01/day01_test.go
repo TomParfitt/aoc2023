@@ -1,12 +1,10 @@
 package day01
 
 import (
-	"fmt"
-	"log/slog"
-	"os"
 	"testing"
 
-	"github.com/TomParfitt/aoc2023/internal/utils"
+	"github.com/TomParfitt/aoc2023/internal/utils/file"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetClibrationValueExample(t *testing.T) {
@@ -17,27 +15,21 @@ a1b2c3d4e5f
 treb7uchet`
 
 	// When
-	calibrationValue := utils.SumProcessResults(input, getCalibrationValue)
+	calibrationValue := getSumOfCalibrationValue(input)
 
 	// Then
-	if calibrationValue != 142 {
-		t.Fatalf(`getCalibrationValue with example value %v != 142`, calibrationValue)
-	}
+	assert.Equal(t, 142, calibrationValue)
 }
 
 func TestGetClibrationValue(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day01.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day01.txt")
 
 	// When
-	calibrationValue := utils.SumProcessResults(str, getCalibrationValue)
+	calibrationValue := getSumOfCalibrationValue(input)
 
 	// Then
-	slog.Info("TestGetClibrationValue", "calibrationValue", calibrationValue)
+	assert.Equal(t, 52834, calibrationValue)
 }
 
 func TestGetClibrationValueExample2(t *testing.T) {
@@ -51,25 +43,19 @@ zoneight234
 7pqrstsixteen`
 
 	// When
-	calibrationValue := utils.SumProcessResults(input, getCalibrationValue)
+	calibrationValue := getSumOfCalibrationValue(input)
 
 	// Then
-	if calibrationValue != 281 {
-		t.Fatalf(`getCalibrationValue with example value %v != 281`, calibrationValue)
-	}
+	assert.Equal(t, 281, calibrationValue)
 }
 
 func TestGetClibrationValue2(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day01.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
+	input := file.MustReadToString("day01.txt")
 
 	// When
-	calibrationValue := utils.SumProcessResults(str, getCalibrationValue)
+	calibrationValue := getSumOfCalibrationValue(input)
 
 	// Then
-	slog.Info("TestGetClibrationValue", "calibrationValue", calibrationValue)
+	assert.Equal(t, 52834, calibrationValue)
 }

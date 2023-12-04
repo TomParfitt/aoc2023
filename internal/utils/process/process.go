@@ -1,13 +1,15 @@
-package utils
+package process
 
 import (
 	"strings"
 	"sync"
+
+	Sum "github.com/TomParfitt/aoc2023/internal/utils/sum"
 )
 
 type process func(input string, wg *sync.WaitGroup, resultChan chan<- int)
 
-func SumProcessResults(input string, p process) int {
+func SumResults(input string, p process) int {
 	lines := strings.Split(input, "\n")
 
 	var wg sync.WaitGroup
@@ -23,5 +25,5 @@ func SumProcessResults(input string, p process) int {
 		close(resultChan)
 	}()
 
-	return SumIntC(resultChan)
+	return Sum.IntC(resultChan)
 }

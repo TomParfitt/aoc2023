@@ -4,8 +4,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/TomParfitt/aoc2023/internal/utils"
+	"github.com/TomParfitt/aoc2023/internal/utils/process"
+	"github.com/TomParfitt/aoc2023/internal/utils/sum"
 )
+
+func sumGetPoints(input string) int {
+	return process.SumResults(input, getPoints)
+}
 
 func getPoints(input string, wg *sync.WaitGroup, resultChan chan<- int) {
 	defer wg.Done()
@@ -45,7 +50,7 @@ func getNumberOfCards(input string) int {
 		}
 	}
 
-	return utils.SumIntS(results)
+	return sum.IntS(results)
 }
 
 func countWinningLines(input string) int {
