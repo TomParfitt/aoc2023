@@ -59,7 +59,7 @@ zoneight234
 
 func TestGetClibrationValue2(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day1-2.txt")
+	b, err := os.ReadFile("day1.txt")
 	if err != nil {
 		fmt.Print(err)
 	}
