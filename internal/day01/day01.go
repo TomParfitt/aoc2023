@@ -1,4 +1,4 @@
-package internal
+package day01
 
 import (
 	"regexp"

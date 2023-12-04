@@ -1,4 +1,4 @@
-package internal
+package day02
 
 import (
 	"fmt"
@@ -26,7 +26,7 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 func TestGetValidIdsSum(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day2.txt")
+	b, err := os.ReadFile("day02.txt")
 	if err != nil {
 		fmt.Print(err)
 	}
@@ -58,7 +58,7 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 func TestGetSumOfMinCubes(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day2.txt")
+	b, err := os.ReadFile("day02.txt")
 	if err != nil {
 		fmt.Print(err)
 	}

@@ -1,4 +1,4 @@
-package internal
+package day01
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ treb7uchet`
 
 func TestGetClibrationValue(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day1.txt")
+	b, err := os.ReadFile("day01.txt")
 	if err != nil {
 		fmt.Print(err)
 	}
@@ -59,7 +59,7 @@ zoneight234
 
 func TestGetClibrationValue2(t *testing.T) {
 	// Given
-	b, err := os.ReadFile("day1.txt")
+	b, err := os.ReadFile("day01.txt")
 	if err != nil {
 		fmt.Print(err)
 	}
